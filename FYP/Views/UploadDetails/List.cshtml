@@ -1,0 +1,89 @@
+﻿@model IEnumerable<FYP.Models.Patient>
+
+@{
+    ViewBag.Title = "List";
+}
+<h5><i> Welcome user ID of @Session["ID"].ToString() </i></h5>
+
+<h2> Patient's List</h2>
+
+<p>
+    @Html.ActionLink("Register New Patient", "Submit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Of_Birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tel_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diabetic_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Retinal_Image)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tel_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diabetic_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Retinal_Image)*@
+            <img src="~/Images/@item.Retinal_Image" alt="image" width="100" />
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PatientId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PatientId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PatientId })
+        </td>*@
+    </tr>
+}
+
+</table>

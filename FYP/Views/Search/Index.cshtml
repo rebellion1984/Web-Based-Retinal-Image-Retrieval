@@ -1,0 +1,122 @@
+﻿@model IEnumerable<FYP.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div style="font-family: Arial">
+    <h5><i> Welcome user ID of @Session["ID"].ToString() </i></h5>
+
+    <h3>Filter patients out by using different criteria:</h3>
+
+    
+    <p>
+        @*get method to fetch data from view to controller*@
+        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+        {
+            @*search buttons*@
+        <b> Search By:</b>
+        @Html.RadioButton("searchBy", "ID") <text> ID &nbsp &nbsp</text>
+        @Html.RadioButton("searchBy", "F_Name", true) <text> First Name &nbsp &nbsp</text>
+        @Html.RadioButton("searchBy", "Diab-Type") <text>Diabetic Type </text>  <br/>
+        @Html.TextBox("searchItem") <text> &nbsp &nbsp</text>
+        <input type="submit" value="Search"/>
+        }
+    </p>
+    
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Of_Birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient_Address)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Tel_No)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email_Address)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Diabetic_Type)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Retinal_Image)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        @*check if there is a matching rows,then go to the foreach loop and display it*@
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="9"> No matching rows found!</td>
+            </tr>
+        }
+        else
+        { 
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient_Address)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Tel_No)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email_Address)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diabetic_Type)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Retinal_Image)
+                    
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PatientId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PatientId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PatientId })
+                </td>
+            </tr>
+        }
+        }
+
+    </table>
+</div>

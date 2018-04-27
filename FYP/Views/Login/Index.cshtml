@@ -1,0 +1,50 @@
+﻿@model FYP.Models.Stafff
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("LoggedInPage", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(a => a.UserID)</td>
+                    <td>@Html.TextBoxFor(a => a.UserID)</td>
+                    <td>@Html.ValidationMessageFor(a => a.UserID)</td>
+                </tr>
+        
+                <tr>
+                    <td>@Html.LabelFor(a => a.Password)</td>
+                    <td>@Html.PasswordFor(a => a.Password)</td>
+                    <td>@Html.ValidationMessageFor(a => a.Password)</td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Login" /> </td>
+                </tr>
+        </table>
+            <br>
+            <p><b> New user? Click @Html.ActionLink("here", "Register", "Login") to register.</b></p>
+           
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+        
